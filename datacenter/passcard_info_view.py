@@ -5,10 +5,10 @@ from django.shortcuts import render, get_object_or_404
 
 def passcard_info_view(request, passcode):
     passcard = get_object_or_404(Passcard, passcode=passcode)
-    visits_passcard = Visit.objects.filter(passcard=passcard)
+    visits_for_passcard = Visit.objects.filter(passcard=passcard)
     this_passcard_visits = []
 
-    for visit in visits_passcard:
+    for visit in visits_for_passcard:
         duration_seconds = visit.get_duration()
         is_strange = visit.is_visit_long(check_minutes=60)
         formatted_duration = visit.format_duration(duration_seconds)
